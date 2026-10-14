@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>بطاقة الحضور الذكية - كلية الخدمة الاجتماعية بنين بالخانكة</title>
+<link rel="icon" href="1.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#080C14;--gold:#FFE600;--gold2:#FFD700;--em:#00E676;--em2:#00875A;--blue:#1A237E;--blue2:#0D47A1;--tx:#f4f6fb;--mut:#9aa6bd}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{min-height:100%}
+body{font-family:'Cairo','Tajawal',system-ui,sans-serif;background:var(--bg);color:var(--tx);overflow-x:hidden;padding-bottom:90px}
+#bg{position:fixed;inset:0;z-index:-1;width:100%;height:100%}
+.wrap{max-width:560px;margin:0 auto;padding:28px 18px 10px;display:flex;flex-direction:column;align-items:center;gap:22px}
+.glass{background:rgba(255,255,255,.05);backdrop-filter:blur(25px) saturate(180%);-webkit-backdrop-filter:blur(25px) saturate(180%);border:1px solid rgba(255,230,0,.25);border-radius:26px;box-shadow:0 20px 60px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.12);position:relative;width:100%}
+.glass::before{content:"";position:absolute;inset:-1px;border-radius:inherit;padding:1px;background:linear-gradient(135deg,rgba(255,230,0,.7),transparent 35%,transparent 65%,rgba(0,230,118,.7));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
+header{text-align:center;padding:30px 22px 26px}
+.logo{width:132px;height:132px;border-radius:50%;margin:0 auto 18px;padding:5px;background:conic-gradient(from 0deg,var(--gold),var(--em),var(--blue2),var(--gold));animation:spin 8s linear infinite;box-shadow:0 0 40px rgba(255,230,0,.45),0 0 80px rgba(0,230,118,.2)}
+.logo img{width:100%;height:100%;border-radius:50%;background:#fff;object-fit:cover;animation:spin 8s linear infinite reverse}
+@keyframes spin{to{transform:rotate(360deg)}}
+.shine{background:linear-gradient(100deg,#b8860b 0%,var(--gold) 25%,#fff7b0 50%,var(--gold2) 75%,#b8860b 100%);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shim 4s linear infinite;text-shadow:0 0 30px rgba(255,230,0,.25)}
+@keyframes shim{to{background-position:-250% 0}}
+h1{font-size:clamp(1.25rem,4.6vw,1.65rem);font-weight:800;line-height:1.6}
+.sub{margin-top:8px;color:var(--em);font-weight:600;font-size:1rem;text-shadow:0 0 14px rgba(0,230,118,.5)}
+form{padding:28px 24px;display:flex;flex-direction:column;gap:22px}
+.field{position:relative}
+.field input,.dd-btn{width:100%;height:58px;background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.14);border-radius:16px;color:var(--tx);font:600 1.05rem 'Cairo',sans-serif;padding:20px 16px 0;outline:none;transition:.3s;text-align:right}
+.field label{position:absolute;right:16px;top:17px;color:var(--mut);pointer-events:none;transition:.25s;font-size:1rem}
+.field input:focus,.dd-btn:focus,.dd.open .dd-btn{border-color:var(--gold);box-shadow:0 0 0 4px rgba(255,230,0,.14),0 0 24px rgba(255,230,0,.25)}
+.field input:focus+label,.field input:not(:placeholder-shown)+label,.dd.has .field-l{top:6px;font-size:.74rem;color:var(--gold)}
+.field.ok input{border-color:var(--em)}.field.bad input{border-color:#ff5252}
+.msg{font-size:.8rem;margin-top:6px;min-height:1.1em;color:#ff8a80}.field.ok .msg{color:var(--em)}
+.dd{position:relative}
+.dd-btn{display:flex;align-items:center;justify-content:space-between;cursor:pointer;padding-top:0}
+.dd-btn span{padding-top:18px}
+.dd .field-l{position:absolute;right:16px;top:17px;color:var(--mut);pointer-events:none;transition:.25s}
+.dd-btn svg{transition:.3s;flex:none}.dd.open .dd-btn svg{transform:rotate(180deg)}
+.dd-list{position:absolute;top:64px;right:0;left:0;z-index:20;background:rgba(10,16,28,.96);backdrop-filter:blur(25px);border:1px solid rgba(255,230,0,.3);border-radius:16px;overflow:hidden;opacity:0;transform:translateY(-8px) scale(.98);pointer-events:none;transition:.25s;box-shadow:0 18px 40px rgba(0,0,0,.6)}
+.dd.open .dd-list{opacity:1;transform:none;pointer-events:auto}
+.dd-list div{padding:14px 18px;cursor:pointer;font-weight:600;transition:.2s}
+.dd-list div:hover,.dd-list div:focus{background:linear-gradient(270deg,rgba(255,230,0,.16),rgba(0,230,118,.12));outline:none}
+.btn{position:relative;overflow:hidden;border:0;cursor:pointer;font:800 1.08rem 'Cairo',sans-serif;color:#07110c;padding:16px 22px;border-radius:16px;background:linear-gradient(110deg,var(--gold),var(--em));box-shadow:0 10px 30px rgba(0,230,118,.3),0 0 22px rgba(255,230,0,.3);transition:transform .25s,box-shadow .25s}
+.btn:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,230,118,.45),0 0 34px rgba(255,230,0,.45)}
+.btn:active{transform:translateY(0) scale(.98)}
+.btn::after{content:"";position:absolute;top:0;left:-70%;width:40%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.65),transparent);transform:skewX(-20deg);animation:sw 3.2s infinite}
+@keyframes sw{0%,60%{left:-70%}100%{left:140%}}
+.rip{position:absolute;border-radius:50%;background:rgba(255,255,255,.55);transform:scale(0);animation:rp .7s ease-out forwards;pointer-events:none}
+@keyframes rp{to{transform:scale(4);opacity:0}}
+.btn.alt{background:rgba(255,255,255,.07);color:var(--tx);border:1px solid rgba(255,230,0,.35);box-shadow:none}
+.btn.alt::after{display:none}
+/* badge */
+#badgeArea{display:none;width:100%;perspective:1100px;flex-direction:column;align-items:center;gap:18px}
+#badgeArea.show{display:flex}
+.badge{width:100%;max-width:380px;border-radius:26px;padding:22px 20px 20px;text-align:center;position:relative;overflow:hidden;transform-style:preserve-3d;transition:transform .15s ease-out;background:linear-gradient(155deg,rgba(26,35,126,.55),rgba(8,12,20,.85) 45%,rgba(0,135,90,.4));border:1.5px solid rgba(255,230,0,.55);box-shadow:0 30px 70px rgba(0,0,0,.6),0 0 50px rgba(255,230,0,.2);animation:pop .9s cubic-bezier(.2,1.3,.4,1)}
+@keyframes pop{0%{opacity:0;transform:scale(.3) rotateX(70deg);filter:blur(14px)}100%{opacity:1;transform:none;filter:none}}
+.holo{position:absolute;inset:0;background:linear-gradient(115deg,transparent 30%,rgba(255,230,0,.18) 42%,rgba(0,230,118,.2) 50%,rgba(80,120,255,.2) 58%,transparent 70%);background-size:300% 300%;background-position:var(--hx,0%) 50%;mix-blend-mode:screen;pointer-events:none}
+.badge .bl{width:84px;height:84px;border-radius:50%;background:#fff;padding:3px;margin:0 auto 8px;box-shadow:0 0 0 3px var(--gold),0 0 28px rgba(255,230,0,.6);transform:translateZ(40px)}
+.badge .bl img{width:100%;height:100%;border-radius:50%;object-fit:cover}
+.inst{font-size:.82rem;color:var(--mut);font-weight:600;transform:translateZ(20px)}
+.nm{font-size:1.5rem;font-weight:800;margin:12px 0 8px;line-height:1.5;transform:translateZ(50px);word-break:break-word}
+.yr{display:inline-block;padding:5px 18px;border-radius:30px;font-weight:700;font-size:.92rem;color:#07110c;background:linear-gradient(110deg,var(--gold),var(--em));transform:translateZ(35px)}
+.qr{width:216px;height:216px;margin:18px auto 12px;padding:8px;background:#fff;border-radius:16px;box-shadow:0 0 30px rgba(0,230,118,.4);transform:translateZ(45px);display:flex}
+.qr canvas,.qr img{width:100%!important;height:100%!important;display:block}
+.hid{font:700 .78rem ui-monospace,Consolas,monospace;direction:ltr;color:var(--em);letter-spacing:.08em;word-break:break-all}
+.hid small{display:block;color:var(--mut);font:600 .7rem 'Cairo';letter-spacing:0;margin-bottom:2px}
+.acts{display:flex;gap:12px;width:100%;max-width:380px;flex-wrap:wrap}.acts .btn{flex:1;min-width:150px;padding:14px 10px;font-size:1rem}
+/* fab */
+.fab{position:fixed;bottom:25px;left:25px;z-index:50;width:56px;height:56px;border-radius:50%;border:1.5px solid rgba(255,230,0,.6);cursor:pointer;background:rgba(255,255,255,.08);backdrop-filter:blur(14px);color:var(--gold);display:grid;place-items:center;animation:pulse 2.4s infinite;transition:transform .25s}
+.fab:hover{transform:scale(1.12) rotate(-6deg)}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,230,0,.55),0 0 20px rgba(0,230,118,.4)}70%{box-shadow:0 0 0 20px rgba(255,230,0,0),0 0 20px rgba(0,230,118,.4)}100%{box-shadow:0 0 0 0 rgba(255,230,0,0)}}
+.modal{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:20px;background:rgba(4,7,12,.65);backdrop-filter:blur(6px);opacity:0;pointer-events:none;transition:.3s}
+.modal.open{opacity:1;pointer-events:auto}
+.mbox{max-width:340px;padding:34px 24px 26px;text-align:center;transform:scale(.85) translateY(30px);transition:.4s cubic-bezier(.2,1.2,.4,1)}
+.modal.open .mbox{transform:none}
+.av{width:128px;height:128px;border-radius:50%;margin:0 auto 16px;padding:4px;background:conic-gradient(var(--gold),var(--em),var(--gold));box-shadow:0 0 36px rgba(255,230,0,.5),0 0 60px rgba(0,230,118,.25);animation:spin 6s linear infinite}
+.av img{width:100%;height:100%;border-radius:50%;object-fit:cover;background:#fff;animation:spin 6s linear infinite reverse}
+.dev{font-size:1.7rem;font-weight:800;direction:ltr;margin-bottom:4px}
+.role{color:var(--mut);margin-bottom:20px;font-size:.9rem}
+.wa{display:flex;align-items:center;justify-content:center;gap:10px;text-decoration:none;background:linear-gradient(110deg,#25D366,#00875A);color:#fff;box-shadow:0 10px 28px rgba(37,211,102,.4)}
+.x{position:absolute;top:12px;left:14px;background:none;border:0;color:var(--mut);font-size:1.6rem;cursor:pointer;line-height:1}
+.x:hover{color:var(--gold)}
+footer{position:fixed;bottom:0;right:0;left:0;z-index:40;text-align:center;padding:14px 90px 14px 90px;font-weight:600;font-size:.88rem;background:rgba(8,12,20,.6);backdrop-filter:blur(20px) saturate(180%);border-top:1px solid rgba(255,230,0,.3);box-shadow:0 -6px 30px rgba(255,230,0,.08)}
+@media(max-width:420px){footer{font-size:.74rem;padding:12px 80px 12px 14px}.fab{bottom:18px;left:16px}}
+@media(min-width:1600px){.wrap{max-width:680px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important}}
+@media print{body{background:#fff}body>*:not(#badgeArea):not(.wrap){display:none!important}.wrap>*:not(#badgeArea){display:none!important}.acts{display:none}#badgeArea{display:flex!important}.badge{animation:none;transform:none!important;color:#000;background:#fff;border:2px solid #000;box-shadow:none}.nm,.inst{color:#000}}
+</style>
+</head>
+<body>
+<canvas id="bg"></canvas>
+<main class="wrap">
+  <header class="glass">
+    <div class="logo"><img src="1.png" alt="شعار الكلية"></div>
+    <h1 class="shine">كلية الخدمة الاجتماعية بنين بالخانكة - جامعة الأزهر</h1>
+    <p class="sub">نظام استخراج بطاقة الحضور الذكية للطلاب</p>
+  </header>
+
+  <form id="f" class="glass" novalidate>
+    <div class="field" id="nf">
+      <input id="name" type="text" placeholder=" " autocomplete="name" maxlength="60">
+      <label for="name">الاسم الثلاثي أو الرباعي</label>
+      <div class="msg" id="nmsg"></div>
+    </div>
+    <div class="dd" id="dd">
+      <div class="dd-btn" id="ddb" tabindex="0" role="button" aria-haspopup="listbox"><span id="ddv"></span>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FFE600" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></div>
+      <span class="field-l">الفرقة الدراسية</span>
+      <div class="dd-list" role="listbox">
+        <div tabindex="0">الفرقة الأولى</div><div tabindex="0">الفرقة الثانية</div><div tabindex="0">الفرقة الثالثة</div><div tabindex="0">الفرقة الرابعة</div>
+      </div>
+      <div class="msg" id="ymsg" style="margin-top:6px"></div>
+    </div>
+    <button class="btn" type="submit">تأكيد وإصدار الكارت الذكي</button>
+  </form>
+
+  <section id="badgeArea">
+    <div class="badge" id="badge">
+      <div class="holo"></div>
+      <div class="bl"><img src="1.png" alt=""></div>
+      <div class="inst">كلية الخدمة الاجتماعية بنين بالخانكة - جامعة الأزهر</div>
+      <div class="nm shine" id="bName"></div>
+      <div class="yr" id="bYear"></div>
+      <div class="qr" id="qr"></div>
+      <div class="hid"><small>المعرّف الفريد</small><span id="bHash"></span></div>
+    </div>
+    <div class="acts">
+      <button class="btn" id="dl" type="button">تنزيل الكارت (PNG)</button>
+      <button class="btn alt" id="pr" type="button">طباعة الكارت</button>
+    </div>
+  </section>
+</main>
+
+<button class="fab" id="fab" aria-label="تواصل مع المطور">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg>
+</button>
+
+<div class="modal" id="modal" aria-hidden="true">
+  <div class="glass mbox" role="dialog" aria-label="المطور">
+    <button class="x" id="mx" aria-label="إغلاق">×</button>
+    <div class="av"><img src="2.png" alt="Karam Mohsen"></div>
+    <div class="dev shine">Karam Mohsen</div>
+    <div class="role">مطوّر النظام</div>
+    <a class="btn wa" href="https://wa.me/201014403294" target="_blank" rel="noopener">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.4-2.3-1.4-.8-.7-1.4-1.6-1.6-1.9-.2-.3 0-.4.1-.6l.4-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.600-.1 1.700-.7 1.900-1.400.2-.7.2-1.200.2-1.400-.1-.1-.3-.2-.6-.3zM12 2a10 10 0 00-8.600 15L2 22l5.200-1.400A10 10 0 1012 2z"/></svg>
+      تواصل عبر الواتساب</a>
+  </div>
+</div>
+
+<footer>جميع الحقوق محفوظة لدي Karam Mohsen - 01014403294</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+/* ---------- Ambient orb background ---------- */
+(function(){
+  const c=document.getElementById('bg'),x=c.getContext('2d');let W,H,mx=.5,my=.5;
+  const cols=['255,230,0','0,230,118','26,35,126','13,71,161','255,215,0','0,135,90'];
+  const orbs=cols.map((col,i)=>({col,x:Math.random(),y:Math.random(),r:.22+Math.random()*.22,vx:(Math.random()-.5)*.0006,vy:(Math.random()-.5)*.0006,a:i<2?.28:.4}));
+  const dust=Array.from({length:60},()=>({x:Math.random(),y:Math.random(),s:Math.random()*1.6+.4,v:Math.random()*.0004+.0001}));
+  function rs(){W=c.width=innerWidth;H=c.height=innerHeight}rs();addEventListener('resize',rs);
+  addEventListener('pointermove',e=>{mx=e.clientX/W;my=e.clientY/H});
+  function t(){
+    x.fillStyle='#080C14';x.fillRect(0,0,W,H);x.globalCompositeOperation='lighter';
+    orbs.forEach(o=>{o.x+=o.vx+(mx-.5)*.0002;o.y+=o.vy+(my-.5)*.0002;if(o.x<-.1||o.x>1.1)o.vx*=-1;if(o.y<-.1||o.y>1.1)o.vy*=-1;
+      const r=o.r*Math.max(W,H),g=x.createRadialGradient(o.x*W,o.y*H,0,o.x*W,o.y*H,r);
+      g.addColorStop(0,`rgba(${o.col},${o.a})`);g.addColorStop(1,`rgba(${o.col},0)`);x.fillStyle=g;x.fillRect(0,0,W,H)});
+    dust.forEach(d=>{d.y-=d.v;if(d.y<0)d.y=1;x.fillStyle='rgba(255,230,0,.5)';x.beginPath();x.arc(d.x*W,d.y*H,d.s,0,6.3);x.fill()});
+    x.globalCompositeOperation='source-over';requestAnimationFrame(t)}
+  t();
+})();
+
+/* ---------- Form logic ---------- */
+const $=id=>document.getElementById(id);
+const nameI=$('name'),nf=$('nf'),dd=$('dd');let year='';
+function checkName(){
+  const v=nameI.value.trim().replace(/\s+/g,' '),parts=v.split(' ').filter(Boolean);
+  const ok=parts.length>=3&&/^[\u0600-\u06FFa-zA-Z\s]+$/.test(v);
+  nf.classList.toggle('ok',ok);nf.classList.toggle('bad',!ok&&v.length>0);
+  $('nmsg').textContent=!v?'':ok?'اسم صحيح ✓':(/^[\u0600-\u06FFa-zA-Z\s]+$/.test(v)?'اكتب الاسم ثلاثيًا على الأقل':'استخدم حروفًا فقط بدون أرقام أو رموز');
+  return ok}
+nameI.addEventListener('input',checkName);
+$('ddb').onclick=()=>dd.classList.toggle('open');
+$('ddb').onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();dd.classList.toggle('open')}};
+dd.querySelectorAll('.dd-list div').forEach(o=>{
+  const pick=()=>{year=o.textContent;$('ddv').textContent=year;dd.classList.add('has');dd.classList.remove('open');$('ymsg').textContent=''};
+  o.onclick=pick;o.onkeydown=e=>{if(e.key==='Enter')pick()}});
+document.addEventListener('click',e=>{if(!dd.contains(e.target))dd.classList.remove('open')});
+document.addEventListener('pointerdown',e=>{const b=e.target.closest('.btn');if(!b)return;const r=b.getBoundingClientRect(),s=Math.max(r.width,r.height),d=document.createElement('span');
+  d.className='rip';d.style.cssText=`width:${s}px;height:${s}px;left:${e.clientX-r.left-s/2}px;top:${e.clientY-r.top-s/2}px`;b.appendChild(d);setTimeout(()=>d.remove(),700)});
+
+/* ---------- Hash + QR ---------- */
+function cyrb(str,seed=0){let h1=0xdeadbeef^seed,h2=0x41c6ce57^seed;for(let i=0;i<str.length;i++){const c=str.charCodeAt(i);h1=Math.imul(h1^c,2654435761);h2=Math.imul(h2^c,1597334677)}
+  h1=Math.imul(h1^(h1>>>16),2246822507)^Math.imul(h2^(h2>>>13),3266489909);h2=Math.imul(h2^(h2>>>16),2246822507)^Math.imul(h1^(h1>>>13),3266489909);
+  return (h2>>>0).toString(16).padStart(8,'0')+(h1>>>0).toString(16).padStart(8,'0')}
+function makeId(n,y){const rnd=crypto.getRandomValues(new Uint32Array(2)).join('');const s=n+'|'+y+'|'+Date.now()+'|'+rnd;
+  return (cyrb(s,1)+cyrb(s,7)).toUpperCase().match(/.{1,8}/g).join('-')}
+let cur=null;
+$('f').addEventListener('submit',e=>{
+  e.preventDefault();const okN=checkName();
+  if(!year)$('ymsg').textContent='اختر الفرقة الدراسية';
+  if(!okN||!year){(okN?$('ddb'):nameI).focus();return}
+  const name=nameI.value.trim().replace(/\s+/g,' ');
+  const id=makeId(name,year);cur={id,name,year};
+  $('bName').textContent=name;$('bYear').textContent=year;$('bHash').textContent=id;
+  const q=$('qr');q.innerHTML='';
+  const payload=JSON.stringify({id,name,year});
+  new QRCode(q,{text:unescape(encodeURIComponent(payload)),width:400,height:400,colorDark:'#000000',colorLight:'#ffffff',correctLevel:QRCode.CorrectLevel.M});
+  const area=$('badgeArea');area.classList.remove('show');void area.offsetWidth;area.classList.add('show');
+  burst();setTimeout(()=>area.scrollIntoView({behavior:'smooth',block:'center'}),150)});
+
+/* ---------- Particle burst ---------- */
+function burst(){
+  const c=document.createElement('canvas');c.style.cssText='position:fixed;inset:0;z-index:60;pointer-events:none';c.width=innerWidth;c.height=innerHeight;document.body.appendChild(c);
+  const x=c.getContext('2d'),ps=[],cs=['#FFE600','#00E676','#4f6bff','#fff'];
+  for(let i=0;i<110;i++){const a=Math.random()*6.28,s=3+Math.random()*9;ps.push({x:innerWidth/2,y:innerHeight*.55,vx:Math.cos(a)*s,vy:Math.sin(a)*s-3,l:1,c:cs[i%4],r:2+Math.random()*3})}
+  (function f(){x.clearRect(0,0,c.width,c.height);let alive=0;ps.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=.18;p.vx*=.985;p.l-=.014;if(p.l>0){alive++;x.globalAlpha=p.l;x.fillStyle=p.c;x.shadowColor=p.c;x.shadowBlur=12;x.beginPath();x.arc(p.x,p.y,p.r,0,6.3);x.fill()}});
+    alive?requestAnimationFrame(f):c.remove()})()}
+
+/* ---------- 3D tilt (pointer + gyro) ---------- */
+const badge=$('badge');
+function tilt(rx,ry,hx){badge.style.transform=`rotateX(${rx}deg) rotateY(${ry}deg)`;badge.style.setProperty('--hx',hx+'%')}
+badge.addEventListener('pointermove',e=>{const r=badge.getBoundingClientRect(),px=(e.clientX-r.left)/r.width-.5,py=(e.clientY-r.top)/r.height-.5;tilt(-py*22,px*22,(px+.5)*100)});
+badge.addEventListener('pointerleave',()=>{tilt(0,0,0)});
+function gyro(e){if(e.gamma==null)return;const g=Math.max(-30,Math.min(30,e.gamma)),b=Math.max(-30,Math.min(30,(e.beta||0)-45));tilt(-b*.6,g*.6,50+g)}
+if(window.DeviceOrientationEvent&&matchMedia('(pointer:coarse)').matches){
+  if(typeof DeviceOrientationEvent.requestPermission==='function'){badge.addEventListener('click',()=>DeviceOrientationEvent.requestPermission().then(s=>s==='granted'&&addEventListener('deviceorientation',gyro)).catch(()=>{}),{once:true})}
+  else addEventListener('deviceorientation',gyro)}
+
+/* ---------- Download PNG (drawn manually) ---------- */
+function rr(x,a,b,w,h,r){x.beginPath();x.moveTo(a+r,b);x.arcTo(a+w,b,a+w,b+h,r);x.arcTo(a+w,b+h,a,b+h,r);x.arcTo(a,b+h,a,b,r);x.arcTo(a,b,a+w,b,r);x.closePath()}
+function wrapText(x,t,cx,y,mw,lh){const w=t.split(' ');let l='',lines=[];w.forEach(s=>{const tt=l?l+' '+s:s;if(x.measureText(tt).width>mw&&l){lines.push(l);l=s}else l=tt});lines.push(l);lines.forEach((s,i)=>x.fillText(s,cx,y+i*lh));return lines.length}
+$('dl').onclick=()=>{
+  if(!cur)return;const W=900,H=1320,c=document.createElement('canvas');c.width=W;c.height=H;const x=c.getContext('2d');
+  const g=x.createLinearGradient(0,0,W,H);g.addColorStop(0,'#1A237E');g.addColorStop(.45,'#080C14');g.addColorStop(1,'#00875A');
+  rr(x,0,0,W,H,60);x.fillStyle=g;x.fill();x.lineWidth=6;x.strokeStyle='#FFE600';rr(x,10,10,W-20,H-20,52);x.stroke();
+  const logo=new Image();logo.onload=()=>{
+    x.save();x.shadowColor='#FFE600';x.shadowBlur=40;x.fillStyle='#fff';x.beginPath();x.arc(W/2,190,115,0,6.3);x.fill();x.restore();
+    x.save();x.beginPath();x.arc(W/2,190,108,0,6.3);x.clip();x.drawImage(logo,W/2-108,82,216,216);x.restore();
+    x.textAlign='center';x.direction='rtl';x.fillStyle='#9aa6bd';x.font='600 30px Cairo,sans-serif';x.fillText('كلية الخدمة الاجتماعية بنين بالخانكة - جامعة الأزهر',W/2,370,W-100);
+    x.fillStyle='#FFE600';x.font='800 64px Cairo,sans-serif';x.shadowColor='rgba(255,230,0,.6)';x.shadowBlur=24;
+    const n=wrapText(x,cur.name,W/2,470,W-120,80);x.shadowBlur=0;
+    const yy=470+(n-1)*80+50;x.font='700 36px Cairo,sans-serif';const tw=x.measureText(cur.year).width+90;
+    const yg=x.createLinearGradient(W/2-tw/2,0,W/2+tw/2,0);yg.addColorStop(0,'#FFE600');yg.addColorStop(1,'#00E676');
+    rr(x,W/2-tw/2,yy,tw,70,35);x.fillStyle=yg;x.fill();x.fillStyle='#07110c';x.fillText(cur.year,W/2,yy+50);
+    const qy=yy+120,qs=440;x.fillStyle='#fff';rr(x,W/2-qs/2-20,qy-20,qs+40,qs+40,30);x.fill();
+    const qc=$('qr').querySelector('canvas');x.imageSmoothingEnabled=false;x.drawImage(qc,W/2-qs/2,qy,qs,qs);
+    x.direction='ltr';x.fillStyle='#00E676';x.font='700 28px monospace';x.fillText(cur.id,W/2,qy+qs+85,W-80);
+    x.fillStyle='#9aa6bd';x.font='600 24px Cairo,sans-serif';x.fillText('بطاقة الحضور الذكية',W/2,H-50);
+    try{const a=document.createElement('a');a.download='badge-'+cur.id.slice(0,8)+'.png';a.href=c.toDataURL('image/png');a.click()}
+    catch(err){alert('تعذّر التنزيل. افتح الصفحة عبر رابط (GitHub Pages) وليس كملف محلي.')}};
+  logo.onerror=()=>alert('لم يتم العثور على الملف 1.png بجوار index.html');logo.src='1.png'};
+$('pr').onclick=()=>window.print();
+
+/* ---------- Developer modal ---------- */
+const m=$('modal');
+const om=()=>{m.classList.add('open');m.setAttribute('aria-hidden','false')},cm=()=>{m.classList.remove('open');m.setAttribute('aria-hidden','true')};
+$('fab').onclick=om;$('mx').onclick=cm;m.onclick=e=>{if(e.target===m)cm()};
+addEventListener('keydown',e=>{if(e.key==='Escape'){cm();dd.classList.remove('open')}});
+</script>
+</body>
+</html>
